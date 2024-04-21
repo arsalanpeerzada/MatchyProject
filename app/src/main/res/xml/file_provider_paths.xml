@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<paths>-->
+    <!--&lt;!&ndash;external-path path="Android/data/" name="files_root" /!&ndash;&gt;-->
+    <!--<external-path path="Android/data/com.techwitz.matchymatch.camera/files/Pictures" name="matchy_pic" />-->
+<!--</paths>-->
+<paths>
+    <root-path name="root" path="." />
+</paths>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="450dp"
+    android:layout_height="380dp"
+    android:layout_gravity="center"
+    >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/squarepopup"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:weightSum="3">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:weightSum="3"
+                    >
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"></LinearLayout>
+
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:weightSum="3"
+                            android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.7">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+                                                <ImageView
+                                                    android:id="@+id/circle_parent_cancelbtn"
+                                                    android:layout_alignParentBottom="true"
+                                                    android:layout_alignParentEnd="true"
+                                                    android:layout_marginRight="20dp"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:src="@mipmap/canclebtn"
+                                                    android:scaleType="centerCrop"/>
+                                        </RelativeLayout>
+                                </LinearLayout>
+
+
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.5"></LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"></LinearLayout>
+
+                </LinearLayout>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:weightSum="3"
+            >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"></LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:weightSum="3"
+                    android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.6">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                        <!--<ImageView-->
+                                        <!--android:id="@+id/circle_parent_cancelbtn"-->
+                                        <!--android:layout_alignParentBottom="true"-->
+                                        <!--android:layout_alignParentEnd="true"-->
+                                        <!--android:layout_marginRight="20dp"-->
+                                        <!--android:layout_width="50dp"-->
+                                        <!--android:layout_height="50dp"-->
+                                        <!--android:src="@mipmap/canclebtn"-->
+                                        <!--android:scaleType="centerCrop"/>-->
+                                </RelativeLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1.9"
+                            android:orientation="vertical"
+                            android:weightSum="2.7"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="40dp"
+                            android:paddingRight="40dp"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1.5">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:fontFamily="@font/spookyfont"
+                                            android:gravity="center"
+                                            android:text="Parent zone"
+                                            android:textAlignment="center"
+                                            android:textColor="#1a237e"
+                                            android:textSize="40sp"
+                                            android:textStyle="bold"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.5">
+
+                                        <Button
+                                            android:id="@+id/create_your_puzzles_btn"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:text="Create Your Puzzles"
+                                            android:fontFamily="@font/spookyfont"
+                                            android:textColor="@color/white"
+                                            android:background="@drawable/orange_button"/>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.1"></LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.5">
+
+                                        <Button
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:text="Information"
+                                            android:fontFamily="@font/spookyfont"
+                                            android:textColor="@color/white"
+                                            android:id="@+id/information_btn"
+                                            android:background="@drawable/pink_button"/>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="0.2"></LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5"></LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"></LinearLayout>
+
+        </LinearLayout>
+
+
+</RelativeLayout>

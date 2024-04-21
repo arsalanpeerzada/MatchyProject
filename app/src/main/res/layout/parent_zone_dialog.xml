@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/square_popup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/bg_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/popuplayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/parent_zone_title"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="@+id/bg_image"
+        app:layout_constraintStart_toStartOf="@+id/bg_image"
+        app:layout_constraintTop_toTopOf="@+id/bg_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spookyfont"
+        android:gravity="center"
+        android:text="Parent zone"
+        android:textAlignment="center"
+        android:textColor="#1a237e"
+        android:textSize="40sp"
+        android:textStyle="bold"/>
+    <Button
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginTop="24dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parent_zone_title"
+        android:id="@+id/create_your_puzzles_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Create Your Puzzles"
+        android:fontFamily="@font/spookyfont"
+        android:textColor="@color/white"
+        android:background="@drawable/orange_button"/>
+    <Button
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/create_your_puzzles_btn"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintStart_toStartOf="@id/create_your_puzzles_btn"
+        app:layout_constraintEnd_toEndOf="@id/create_your_puzzles_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Information"
+        android:fontFamily="@font/spookyfont"
+        android:textColor="@color/white"
+        android:id="@+id/information_btn"
+        android:background="@drawable/pink_button"/>
+    <Button
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/information_btn"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintStart_toStartOf="@id/information_btn"
+        app:layout_constraintEnd_toEndOf="@id/information_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Privacy Policy"
+        android:fontFamily="@font/spookyfont"
+        android:textColor="@color/white"
+        android:id="@+id/privacy_policy_btn"
+        android:background="@drawable/blue_button"/>
+    <Space
+        app:layout_constraintTop_toBottomOf="@+id/privacy_policy_btn"
+        android:layout_width="0dp"
+        android:layout_height="50dp"/>
+
+    <ImageButton
+        android:id="@+id/circle_parent_cancelbtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:scaleType="centerCrop"
+        android:background="@mipmap/canclebtn"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="48dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

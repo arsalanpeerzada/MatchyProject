@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "597104003097",
+    "firebase_url": "https://matchy-match-81295.firebaseio.com",
+    "project_id": "matchy-match-81295",
+    "storage_bucket": "matchy-match-81295.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597104003097:android:f76f4ebeda3af2d68c8288",
+        "android_client_info": {
+          "package_name": "com.techwitz.matchymatch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "597104003097-dgsrblrf64237nv11emqlnhkdq0t4h9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASOzagp7HQMox6kQa9WuSfN9hq3G8Cz24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "597104003097-dgsrblrf64237nv11emqlnhkdq0t4h9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-1357509405803171~8269689957"
+    }
+  ],
+  "configuration_version": "1"
+}

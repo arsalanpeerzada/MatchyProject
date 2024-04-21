@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="puzzle_box_width">90dp</dimen>
+    <dimen name="puzzle_box_height">80dp</dimen>
+    <dimen name="puzzle_box_margin_start">47dp</dimen>
+    <dimen name="lock_width_height">60dp</dimen>
+</resources>
