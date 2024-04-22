@@ -19,9 +19,9 @@ android {
     defaultConfig {
         applicationId "com.techwitz.matchymatch"
         minSdkVersion 21
-        versionCode 35
+        versionCode 37
         targetSdkVersion 33
-        versionName "35"
+        versionName "37"
         namespace "com.techwitz.matchymatch"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }

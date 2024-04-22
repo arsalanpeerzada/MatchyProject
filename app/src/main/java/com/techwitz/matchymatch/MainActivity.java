@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
 //            }
 //        });
 
-        // tts.speak("Hi, my name is Matchy Match and these are my animal friends. Click on an animal to start the puzzle.", TextToSpeech.QUEUE_FLUSH, null);
+        tts.speak("I am Snake, Click me or any other animal to play", TextToSpeech.QUEUE_FLUSH, null);
 
 
         if (isPlaying) {
@@ -233,9 +233,10 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
             editor.putBoolean("welcomenote", false);
             editor.apply();
             WelcomeNote.start();
+            guideClass(snakebtn, snake, "I am " + snake + ", Click here to play for Shapes");
 
         }
-        guideClass(snakebtn, snake, "I am " + snake + ", Click here to play for Shapes");
+
         if (WelcomeNote.isPlaying())
             snakemediaPlayer.start();
 
@@ -917,13 +918,16 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
 
         new VSpotView.Builder(this)
                 .setTitle("Snake")
-                .setContentText(Intro)
+                .setContentText("I am Snake, Click me or any other animal to play")
                 .setTargetView(snakebtn)
                 .setContentTextSize(12)//optional
                 .setTitleTextSize(14)//optional
                 .setGravity(VSpotView.Gravity.center)
                 .setDismissType(VSpotView.DismissType.outside)
-                .setVSpotListener(new VSpotView.VSpotListener() {
+                .build()
+                .show();
+
+        /*.setVSpotListener(new VSpotView.VSpotListener() {
                     @Override
                     public void onDismiss(View view) {
                         new VSpotView.Builder(MainActivity.this)
@@ -1082,9 +1086,7 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
                                 .show();
 
                     }
-                })
-                .build()
-                .show();
+                })*/
 
 //        new MaterialIntroView.Builder(this)
 //                .enableDotAnimation(true)
