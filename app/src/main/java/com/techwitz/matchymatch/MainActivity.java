@@ -924,10 +924,7 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
                 .setTitleTextSize(14)//optional
                 .setGravity(VSpotView.Gravity.center)
                 .setDismissType(VSpotView.DismissType.outside)
-                .build()
-                .show();
-
-        /*.setVSpotListener(new VSpotView.VSpotListener() {
+                .setVSpotListener(new VSpotView.VSpotListener() {
                     @Override
                     public void onDismiss(View view) {
                         new VSpotView.Builder(MainActivity.this)
@@ -1086,7 +1083,11 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
                                 .show();
 
                     }
-                })*/
+                })
+                .build()
+                .show();
+
+
 
 //        new MaterialIntroView.Builder(this)
 //                .enableDotAnimation(true)
