@@ -349,11 +349,13 @@
                                 ></LinearLayout>
 
                             <LinearLayout
+                                android:background="#D3DE9A"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.3"
                                 ></LinearLayout>
                             <LinearLayout
+                                android:background="#D3DE9A"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1.2"

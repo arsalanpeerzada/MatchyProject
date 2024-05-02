@@ -24,6 +24,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 
 import com.developer.spoti.vspoti.VSpotView;
 import com.techwitz.matchymatch.Utils.AlarmSoundService;
@@ -241,7 +242,7 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
             snakemediaPlayer.start();
 
         parentzontbtn.setOnClickListener(v -> {
-            if (Common.checkPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0, true)) {
+            if (Common.checkPermission(this, new String[]{Manifest.permission.CAMERA}, 0, true)) {
                 if (question == 10) {
 
                     question = 0;
@@ -258,6 +259,11 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
                 editor.apply();
 
                 passwardPopup();
+            } else {
+
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.CAMERA}, 101);
+
             }
         });
 // Banner Ad
@@ -1409,30 +1415,39 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            if (requestCode == 0) {
-                if (question == 10) {
-
-                    question = 0;
-                    SharedPreferences myquestion1 = getSharedPreferences("MyAwesomequestion", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = myquestion1.edit();
-                    editor.putInt("question", question);
-                    editor.apply();
-                }
-                question += 1;
-
-                SharedPreferences myquestion1 = getSharedPreferences("MyAwesomequestion", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = myquestion1.edit();
-                editor.putInt("question", question);
-                editor.apply();
-
-                passwardPopup();
-            }
-        } else {
-            if (requestCode == 0) {
-                Toast.makeText(MainActivity.this, getString(R.string.permission_camera), Toast.LENGTH_SHORT).show();
+        if (requestCode == 101) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission was granted
+            } else {
+                // Permission denied, handle the failure
+                Toast.makeText(this, "Camera permission is necessary", Toast.LENGTH_LONG).show();
             }
         }
+
+//        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//            if (requestCode == 0) {
+//                if (question == 10) {
+//
+//                    question = 0;
+//                    SharedPreferences myquestion1 = getSharedPreferences("MyAwesomequestion", Context.MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = myquestion1.edit();
+//                    editor.putInt("question", question);
+//                    editor.apply();
+//                }
+//                question += 1;
+//
+//                SharedPreferences myquestion1 = getSharedPreferences("MyAwesomequestion", Context.MODE_PRIVATE);
+//                SharedPreferences.Editor editor = myquestion1.edit();
+//                editor.putInt("question", question);
+//                editor.apply();
+//
+//                passwardPopup();
+//            }
+//        } else {
+//            if (requestCode == 0) {
+//                Toast.makeText(MainActivity.this, getString(R.string.permission_camera), Toast.LENGTH_SHORT).show();
+//            }
+//        }
     }
 
 //    @Override
@@ -1494,6 +1509,7 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
 //            myInterAd.show();
 //        }
     }
+
 
 
 }
