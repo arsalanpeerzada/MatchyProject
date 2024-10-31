@@ -24,12 +24,12 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!--<ImageView-->
-    <!--android:id="@+id/backgroundChanger"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:src="@drawable/main_background"-->
-    <!--/>-->
+    <ImageView
+    android:id="@+id/backgroundChanger"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/main_background"
+    />
     <RelativeLayout
         android:layout_below="@+id/home_ad_card"
         android:layout_width="match_parent"
@@ -349,19 +349,15 @@
                                 ></LinearLayout>
 
                             <LinearLayout
-                                android:background="#D3DE9A"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="0.3"
                                 ></LinearLayout>
                             <LinearLayout
-                                android:background="#D3DE9A"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1.2"
                                 >
-
-
                                 <ImageView
                                     android:id="@+id/parentzoneIMG"
                                     android:layout_width="match_parent"

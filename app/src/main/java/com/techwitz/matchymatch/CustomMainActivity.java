@@ -6,11 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +35,8 @@ import com.techwitz.matchymatch.Utils.Common;
 import com.techwitz.matchymatch.Utils.Constants;
 import com.techwitz.matchymatch.Utils.Utils;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -85,7 +90,7 @@ public class CustomMainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_custom_main);
 
         //isi me add karo aur isi ko serialize/deserialize karo.
-//        customPuzzles = CustomPuzzleManager.getInstance().getCustomPuzzles();
+        customPuzzles = CustomPuzzleManager.getInstance().getCustomPuzzles();
 
 
         myPuzzle = this.getSharedPreferences("MyPuzzle", Context.MODE_PRIVATE);
@@ -210,20 +215,20 @@ public class CustomMainActivity extends AppCompatActivity  {
         imageViews.add(image_four);
         imageViews.add(image_five);
         imageViews.add(image_six);
-        /*Bitmap bitmap = BitmapFactory.decodeFile(customPuzzles.get(0).getBackgroundImage());
+        Bitmap bitmap = BitmapFactory.decodeFile(customPuzzles.get(0).getBackgroundImage());
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 20, out);
         Bitmap decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
-        image_one.setImageBitmap(decoded);*/
+        image_one.setImageBitmap(decoded);
         for (int i = 0; i < imageViews.size(); i++) {
-//                if (imageViews.get(i).getDrawable() == null || MainPuzzleActivity.areDrawablesIdentical(imageViews.get(i).getDrawable() ,getResources().getDrawable(R.drawable.image_placeholder))) {
+                if (imageViews.get(i).getDrawable() == null || MainPuzzleActivity.areDrawablesIdentical(imageViews.get(i).getDrawable() ,getResources().getDrawable(R.drawable.image_placeholder))) {
 
-//                byte[] data = dbHelper.GetBitmapByName("firstimage");
+                //byte[] data = dbHelper.GetBitmapByName("firstimage");
             myCustomPuzzle = getSharedPreferences(puzzleNames.get(i) + "_MyAwesomePuzzle", Context.MODE_PRIVATE);
             if (customPuzzles != null && customPuzzles.get(i) != null && !customPuzzles.get(i).getBackgroundImage().equalsIgnoreCase("")) {
-//                        byte[] b = Base64.decode(customPuzzles.get(i).getBackgroundImage(), Base64.DEFAULT);
-//                        bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
-//                        imageViews.get(i).setImageBitmap(bitmap);
+                        byte[] b = Base64.decode(customPuzzles.get(i).getBackgroundImage(), Base64.DEFAULT);
+                        bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+                        imageViews.get(i).setImageBitmap(bitmap);
                 /*Bitmap bitmap = BitmapFactory.decodeFile(customPuzzles.get(i).getBackgroundImage());
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 20, out);
@@ -236,16 +241,17 @@ public class CustomMainActivity extends AppCompatActivity  {
             }
         }
 
-//                    if (bitmap != null) {
-////                    Bitmap bitmap = Utils.getImage(data);
-//                        imageViews.get(i).setImageBitmap(bitmap);
-//                    } else {
-//                        imageViews.get(i).setImageDrawable(getDrawable(R.drawable.image_placeholder));
-//                    }
+            if (bitmap != null) {
+//                    Bitmap bitmap = Utils.getImage(data);
+                imageViews.get(i).setImageBitmap(bitmap);
+            } else {
+                imageViews.get(i).setImageDrawable(getDrawable(R.drawable.image_placeholder));
+            }
+
+        }
+//        else{
 //
-//                } else {
-//
-//                }
+//        }
 
 
     }

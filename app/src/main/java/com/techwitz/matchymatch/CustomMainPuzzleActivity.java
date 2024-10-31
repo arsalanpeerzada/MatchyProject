@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -185,7 +186,7 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
         image_ten = findViewById(R.id.image_ten);
         new LoadDataAsyncTask().execute();
 
-        // target image linear layout
+       //  target image linear layout
 //        image_one  = (ConstraintLayout) findViewById(R.id.image_one);
 //        image_two  = (ConstraintLayout) findViewById(R.id.image_two);
 //        image_three  = (ConstraintLayout) findViewById(R.id.image_three);
@@ -200,13 +201,13 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
         // drag image boxes
         DRAGOne = findViewById(R.id.image_puzzle_one);
         DRAGtwo = findViewById(R.id.image_puzzle_two);
-//        DRAGthree = findViewById(R.id.image_puzzle_three);
+       // DRAGthree = findViewById(R.id.image_puzzle_three);
 
         // declear images
 
 
-//        if(getIntent().getBooleanExtra("isCreating", false)) {
-//
+        if(getIntent().getBooleanExtra("isCreating", false)) {
+
 //            image_one.setOnDragListener(dragListener);
 //            image_two.setOnDragListener(dragListener);
 //            image_three.setOnDragListener(dragListener);
@@ -217,13 +218,13 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
 //            image_eight.setOnDragListener(dragListener);
 //            image_nine.setOnDragListener(dragListener);
 //            image_ten.setOnDragListener(dragListener);
-//
-//            DRAGOne.setOnTouchListener(Common.touchListener);
-//            DRAGtwo.setOnTouchListener(Common.touchListener);
-//            DRAGthree.setOnTouchListener(Common.touchListener);
-//
-//        }
-//        DRAGthree.setOnLongClickListener(longClickListener);
+
+            DRAGOne.setOnTouchListener(Common.touchListener);
+            DRAGtwo.setOnTouchListener(Common.touchListener);
+           // DRAGthree.setOnTouchListener(Common.touchListener);
+
+        }
+        //DRAGthree.setOnLongClickListener(longClickListener);
 
 
         //-------------------------------------this code for record voice name start here....................
@@ -521,9 +522,9 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
 //                byte[] data = dbHelper.GetBitmapByName("firstgreen");
                 Bitmap bitmap = null;
                 if (customMainPuzzles != null && customMainPuzzles.get(i) != null && !customMainPuzzles.get(i).getImage().equalsIgnoreCase("")) {
-//                    byte[] b = Base64.decode(customMainPuzzles.get(i).getImage(), Base64.DEFAULT);
-//                    bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
-//                    imageViews.get(i).setImageBitmap(bitmap);
+                    byte[] b = Base64.decode(customMainPuzzles.get(i).getImage(), Base64.DEFAULT);
+                    bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+                    imageViews.get(i).setImageBitmap(bitmap);
 
                     Picasso.get()
                             .load(new File(customMainPuzzles.get(i).getImage()))
@@ -535,12 +536,12 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
                 }
 
 
-//                if (bitmap != null) {
-////                    Bitmap bitmap = Utils.getImage(data);
-//                    image_one.setImageBitmap(bitmap);
-//                } else {
-//                    image_one.setImageDrawable(getDrawable(R.drawable.image_placeholder));
-//                }
+                if (bitmap != null) {
+//                    Bitmap bitmap = Utils.getImage(data);
+                    image_one.setImageBitmap(bitmap);
+                } else {
+                    image_one.setImageDrawable(getDrawable(R.drawable.image_placeholder));
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 imageViews.get(i).setImageDrawable(getDrawable(R.drawable.image_placeholder));
