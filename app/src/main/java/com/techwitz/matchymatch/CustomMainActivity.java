@@ -125,13 +125,13 @@ public class CustomMainActivity extends AppCompatActivity  {
         image_five = findViewById(R.id.image_five);
         image_six = findViewById(R.id.image_six);
 
-        imageViews = new ArrayList<>();
-        imageViews.add(image_one);
-        imageViews.add(image_two);
-        imageViews.add(image_three);
-        imageViews.add(image_four);
-        imageViews.add(image_five);
-        imageViews.add(image_six);
+//        imageViews = new ArrayList<>();
+//        imageViews.add(image_one);
+//        imageViews.add(image_two);
+//        imageViews.add(image_three);
+//        imageViews.add(image_four);
+//        imageViews.add(image_five);
+//        imageViews.add(image_six);
 
         //declear textview
         TV_ONE = findViewById(R.id.puzzle_name_one);
@@ -221,39 +221,27 @@ public class CustomMainActivity extends AppCompatActivity  {
         Bitmap decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
         image_one.setImageBitmap(decoded);
         for (int i = 0; i < imageViews.size(); i++) {
-                if (imageViews.get(i).getDrawable() == null || MainPuzzleActivity.areDrawablesIdentical(imageViews.get(i).getDrawable() ,getResources().getDrawable(R.drawable.image_placeholder))) {
+            if (imageViews.get(i).getDrawable() == null || MainPuzzleActivity.areDrawablesIdentical(imageViews.get(i).getDrawable() ,getResources().getDrawable(R.drawable.image_placeholder))) {
 
                 //byte[] data = dbHelper.GetBitmapByName("firstimage");
             myCustomPuzzle = getSharedPreferences(puzzleNames.get(i) + "_MyAwesomePuzzle", Context.MODE_PRIVATE);
             if (customPuzzles != null && customPuzzles.get(i) != null && !customPuzzles.get(i).getBackgroundImage().equalsIgnoreCase("")) {
-                        byte[] b = Base64.decode(customPuzzles.get(i).getBackgroundImage(), Base64.DEFAULT);
-                        bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
-                        imageViews.get(i).setImageBitmap(bitmap);
-                /*Bitmap bitmap = BitmapFactory.decodeFile(customPuzzles.get(i).getBackgroundImage());
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 20, out);
-                Bitmap decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(out.toByteArray()));
-                imageViews.get(i).setImageBitmap(decoded);*/
-                Picasso.get().load(new File(customPuzzles.get(i).getBackgroundImage())).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageViews.get(i));
+                String base64String = customPuzzles.get(i).getBackgroundImage();
+                if (base64String == null || base64String.isEmpty()) {
+                    imageViews.get(i).setImageDrawable(getDrawable(R.drawable.image_placeholder));
+                }else {
+                    byte[] b = Base64.decode(customPuzzles.get(i).getBackgroundImage(), Base64.DEFAULT);
+                    bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
+                    imageViews.get(i).setImageBitmap(bitmap);
+                    Picasso.get().load(new File(customPuzzles.get(i).getBackgroundImage())).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageViews.get(i));
 
+                }
             } else {
                 imageViews.get(i).setImageDrawable(getDrawable(R.drawable.image_placeholder));
             }
         }
 
-            if (bitmap != null) {
-//                    Bitmap bitmap = Utils.getImage(data);
-                imageViews.get(i).setImageBitmap(bitmap);
-            } else {
-                imageViews.get(i).setImageDrawable(getDrawable(R.drawable.image_placeholder));
-            }
-
         }
-//        else{
-//
-//        }
-
-
     }
 
     private void setText() {
@@ -325,21 +313,9 @@ public class CustomMainActivity extends AppCompatActivity  {
                     photoPopup();
 
                 } else {
-
-//                    String dele = dbHelper.DeleteImage("firstimage");
                     Toast.makeText(CustomMainActivity.this, "Image Deleted", Toast.LENGTH_LONG).show();
-
-//                        Utils.removePuzzleName("MyFirstPuzzle", CustomMainActivity.this, "keyFirst");
-//                    puzzleNames.add(0, "");
-//                    myPuzzleEditor = myPuzzle.edit();
-//                    storeValues("puzzleNames", puzzleNames, myPuzzleEditor);
                     customPuzzles.set(0, null);
-//                    saveData(customPuzzles);
                     saveData(customPuzzles);
-                    // Restart the Activity
-//                    startActivity(getIntent());
-//                    finish();
-//                    overridePendingTransition( 0, 0);
                     loadDataToView();
                 }
 
@@ -352,21 +328,11 @@ public class CustomMainActivity extends AppCompatActivity  {
 
                 } else {
 
-//                    String dele = dbHelper.DeleteImage("secondimage");
-                    Toast.makeText(CustomMainActivity.this, "Image Deleted", Toast.LENGTH_LONG).show();
 
-//                        Utils.removePuzzleName("MySecondPuzzle", CustomMainActivity.this, "keySecond");
-//                    puzzleNames.add(1, "");
-//                    myPuzzleEditor = myPuzzle.edit();
-//                    storeValues("puzzleNames", puzzleNames, myPuzzleEditor);
+                    Toast.makeText(CustomMainActivity.this, "Image Deleted", Toast.LENGTH_LONG).show();
                     customPuzzles.set(1, null);
-//                    saveData(customPuzzles);
                     saveData(customPuzzles);
-                    // Restart the Activity
                     loadDataToView();
-//                    startActivity(getIntent());
-//                    finish();
-//                    overridePendingTransition( 0, 0);
                 }
 
 
@@ -791,19 +757,6 @@ public class CustomMainActivity extends AppCompatActivity  {
                         .load(file)
                         .into(invisible_imageView);
 
-//                if(data.getExtras() != null) {
-//                    bitmap = (Bitmap) data.getExtras().get("data");
-//                }
-//                else {
-//                    try {
-//                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-//                    } catch (FileNotFoundException e) {
-//                        e.printStackTrace();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                invisible_imageView.setImageBitmap(bitmap);
 
             }
             if (file != null) {

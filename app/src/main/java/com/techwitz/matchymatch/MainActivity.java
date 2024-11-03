@@ -242,9 +242,16 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
             snakemediaPlayer.start();
 
         parentzontbtn.setOnClickListener(v -> {
-            if (Common.checkPermission(this, new String[]{Manifest.permission.CAMERA}, 0, true)) {
-                if (question == 10) {
+            // Check and request permissions for Camera, Photos, Videos, and Notifications
+            if (Common.checkPermission(this, new String[]{
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.READ_MEDIA_IMAGES,
+                    Manifest.permission.READ_MEDIA_VIDEO,
+                    Manifest.permission.READ_MEDIA_AUDIO,
+                    Manifest.permission.POST_NOTIFICATIONS
+            }, 0, true)) {
 
+                if (question == 10) {
                     question = 0;
                     SharedPreferences myquestion1 = getSharedPreferences("MyAwesomequestion", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = myquestion1.edit();
@@ -260,11 +267,16 @@ public class MainActivity extends AppCompatActivity /*implements  MaterialIntroL
 
                 passwardPopup();
             } else {
-
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.CAMERA}, 101);
-
+                // Request all permissions that were not granted
+                ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.READ_MEDIA_IMAGES,
+                        Manifest.permission.READ_MEDIA_VIDEO,
+                        Manifest.permission.READ_MEDIA_AUDIO,
+                        Manifest.permission.POST_NOTIFICATIONS
+                }, 101);
             }
+
         });
 // Banner Ad
 
