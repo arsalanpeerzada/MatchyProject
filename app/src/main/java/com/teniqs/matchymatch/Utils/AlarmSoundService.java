@@ -1,4 +1,4 @@
-package com.techwitz.matchymatch.Utils;
+package com.teniqs.matchymatch.Utils;
 
 import android.app.Service;
 
@@ -13,7 +13,7 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import androidx.annotation.Nullable;
 
-import com.techwitz.matchymatch.R;
+import com.teniqs.matchymatch.R;
 
 public class AlarmSoundService extends Service {
 

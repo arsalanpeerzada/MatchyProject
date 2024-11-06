@@ -1,4 +1,4 @@
-package com.techwitz.matchymatch.Utils;
+package com.teniqs.matchymatch.Utils;
 
 import android.content.ContentResolver;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.techwitz.matchymatch;
+package com.teniqs.matchymatch;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
-import com.techwitz.matchymatch.Utils.AlarmSoundService;
+import com.teniqs.matchymatch.Utils.AlarmSoundService;
 
 import java.io.File;
 import java.lang.reflect.Type;

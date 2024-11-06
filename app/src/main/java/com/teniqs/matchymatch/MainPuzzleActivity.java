@@ -1,6 +1,6 @@
-package com.techwitz.matchymatch;
+package com.teniqs.matchymatch;
 
-import static com.techwitz.matchymatch.Utils.Utils.getUriToResource;
+import static com.teniqs.matchymatch.Utils.Utils.getUriToResource;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,9 +30,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.techwitz.matchymatch.Utils.Common;
-import com.techwitz.matchymatch.Utils.Constants;
-import com.techwitz.matchymatch.Utils.Shaker;
+import com.teniqs.matchymatch.Utils.Common;
+import com.teniqs.matchymatch.Utils.Constants;
+import com.teniqs.matchymatch.Utils.Shaker;
 
 import java.util.ArrayList;
 import java.util.Random;

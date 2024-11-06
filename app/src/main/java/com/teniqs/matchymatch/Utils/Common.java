@@ -1,4 +1,4 @@
-package com.techwitz.matchymatch.Utils;
+package com.teniqs.matchymatch.Utils;
 
 import android.app.Activity;
 import android.content.ClipData;

@@ -1,4 +1,4 @@
-package com.techwitz.matchymatch;
+package com.teniqs.matchymatch;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -27,9 +27,9 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 
 import com.developer.spoti.vspoti.VSpotView;
-import com.techwitz.matchymatch.Utils.AlarmSoundService;
-import com.techwitz.matchymatch.Utils.Common;
-import com.techwitz.matchymatch.Utils.Constants;
+import com.teniqs.matchymatch.Utils.AlarmSoundService;
+import com.teniqs.matchymatch.Utils.Common;
+import com.teniqs.matchymatch.Utils.Constants;
 
 import java.util.ArrayList;
 

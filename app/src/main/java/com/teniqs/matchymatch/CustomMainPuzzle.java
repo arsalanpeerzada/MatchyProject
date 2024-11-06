@@ -1,4 +1,4 @@
-package com.techwitz.matchymatch;
+package com.teniqs.matchymatch;
 
 public class CustomMainPuzzle {
     private String voice;

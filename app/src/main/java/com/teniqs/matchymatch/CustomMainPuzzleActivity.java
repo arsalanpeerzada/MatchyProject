@@ -1,4 +1,4 @@
-package com.techwitz.matchymatch;
+package com.teniqs.matchymatch;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -39,17 +39,17 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
-import com.techwitz.matchymatch.Utils.AlarmSoundService;
-import com.techwitz.matchymatch.Utils.Common;
-import com.techwitz.matchymatch.Utils.Constants;
-import com.techwitz.matchymatch.Utils.Utils;
+import com.teniqs.matchymatch.Utils.AlarmSoundService;
+import com.teniqs.matchymatch.Utils.Common;
+import com.teniqs.matchymatch.Utils.Constants;
+import com.teniqs.matchymatch.Utils.Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-import static com.techwitz.matchymatch.Utils.Utils.getUriToResource;
+import static com.teniqs.matchymatch.Utils.Utils.getUriToResource;
 
 public class CustomMainPuzzleActivity extends AppCompatActivity {
 

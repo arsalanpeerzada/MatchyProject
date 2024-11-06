@@ -1,4 +1,4 @@
-package com.techwitz.matchymatch;
+package com.teniqs.matchymatch;
 
 import android.Manifest;
 import android.app.Dialog;
@@ -22,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
@@ -30,10 +29,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
-import com.techwitz.matchymatch.Utils.AlarmSoundService;
-import com.techwitz.matchymatch.Utils.Common;
-import com.techwitz.matchymatch.Utils.Constants;
-import com.techwitz.matchymatch.Utils.Utils;
+import com.teniqs.matchymatch.Utils.AlarmSoundService;
+import com.teniqs.matchymatch.Utils.Common;
+import com.teniqs.matchymatch.Utils.Constants;
+import com.teniqs.matchymatch.Utils.Utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

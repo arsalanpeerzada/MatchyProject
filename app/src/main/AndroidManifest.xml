@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.techwitz.matchymatch"
+    package="com.teniqs.matchymatch"
     >
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
@@ -32,17 +32,17 @@
         android:theme="@style/AppTheme">
 
 
-        <activity android:name=".WebViewActivity" android:theme="@style/WebViewTheme"/>
+        <activity android:name="com.teniqs.matchymatch.WebViewActivity" android:theme="@style/WebViewTheme"/>
 
         <activity
             android:exported="false"
-            android:name=".MainPuzzleActivity"
+            android:name="com.teniqs.matchymatch.MainPuzzleActivity"
             android:screenOrientation="landscape" /> <!-- <provider -->
         <!-- android:name="com.techwitz.matchymatch.Utils.CustomContentProvider" -->
         <!-- android:authorities="com.techwitz.matchymatch" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".SplashActivity"
+            android:name="com.teniqs.matchymatch.SplashActivity"
             android:screenOrientation="landscape"
             android:exported="true">
             <intent-filter>
@@ -56,19 +56,19 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.teniqs.matchymatch.MainActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".CustomMainActivity"
+            android:name="com.teniqs.matchymatch.CustomMainActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".CustomMainPuzzleActivity"
+            android:name="com.teniqs.matchymatch.CustomMainPuzzleActivity"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".ParrotActivity"
+            android:name="com.teniqs.matchymatch.ParrotActivity"
             android:screenOrientation="landscape" /> <!-- Declare  Alarm Sound Service here -->
         <activity
-            android:name=".CustomMainPuzzlePlayActivity"
+            android:name="com.teniqs.matchymatch.CustomMainPuzzlePlayActivity"
             android:screenOrientation="landscape" />
 
         <meta-data
@@ -80,7 +80,7 @@
             android:value="d7d93dff82aa5c8f7d67109ca10705b0aa0d76c0" />
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.techwitz.matchymatch.provider"
+            android:authorities="com.teniqs.matchymatch.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -88,7 +88,7 @@
                 android:resource="@xml/file_provider_paths" />
         </provider>
         <service
-            android:name=".Utils.AlarmSoundService"
+            android:name="com.teniqs.matchymatch.Utils.AlarmSoundService"
             android:stopWithTask="true" />
     </application>
 

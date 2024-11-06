@@ -1,4 +1,4 @@
-package com.techwitz.matchymatch;
+package com.teniqs.matchymatch;
 
 import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;

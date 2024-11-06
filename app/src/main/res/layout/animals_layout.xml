@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.techwitz.matchymatch.ZebraActivity">
+    tools:context="com.teniqs.matchymatch.ZebraActivity">
 
     <ImageView
         android:layout_width="match_parent"

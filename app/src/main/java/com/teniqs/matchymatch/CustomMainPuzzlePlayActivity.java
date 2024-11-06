@@ -1,4 +1,4 @@
-package com.techwitz.matchymatch;
+package com.teniqs.matchymatch;
 
 import android.content.Context;
 import android.content.Intent;
@@ -32,10 +32,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-import com.techwitz.matchymatch.Utils.Common;
-import com.techwitz.matchymatch.Utils.Constants;
-import com.techwitz.matchymatch.Utils.Shaker;
-import com.techwitz.matchymatch.Utils.Utils;
+import com.teniqs.matchymatch.Utils.Common;
+import com.teniqs.matchymatch.Utils.Constants;
+import com.teniqs.matchymatch.Utils.Shaker;
+import com.teniqs.matchymatch.Utils.Utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +43,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.techwitz.matchymatch.Utils.Utils.getUriToResource;
+import static com.teniqs.matchymatch.Utils.Utils.getUriToResource;
 
 public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
 
