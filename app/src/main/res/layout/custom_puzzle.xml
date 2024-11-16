@@ -13,11 +13,23 @@
         android:layout_height="match_parent"
         android:background="@drawable/pinkbackground">
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Insert Images for Puzzle"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toTopOf="@+id/image_two"
+            app:layout_constraintEnd_toEndOf="@+id/image_five"
+            app:layout_constraintStart_toStartOf="@+id/image_one"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/image_one"
             android:layout_width="@dimen/puzzle_box_width"
             android:layout_height="@dimen/puzzle_box_height"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/image_box"
             android:padding="5dp"
             app:layout_constraintEnd_toStartOf="@+id/image_two"

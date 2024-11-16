@@ -18,6 +18,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:textSize="26sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Puzzle"
+            app:layout_constraintBottom_toTopOf="@+id/image_two"
+            app:layout_constraintEnd_toEndOf="@+id/image_three"
+            app:layout_constraintStart_toStartOf="@+id/image_one"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
             android:id="@+id/image_one"

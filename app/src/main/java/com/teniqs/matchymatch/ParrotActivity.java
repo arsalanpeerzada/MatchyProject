@@ -47,6 +47,7 @@ public class ParrotActivity extends AppCompatActivity {
         //isi me add karo aur isi ko serialize/deserialize karo.
 //        customPuzzles = CustomPuzzleManager.getInstance().getCustomPuzzles();
 
+        Toast.makeText(ParrotActivity.this, "Please create puzzle from Parent's section", Toast.LENGTH_LONG).show();
 
         myPuzzle = this.getSharedPreferences("MyPuzzle", Context.MODE_PRIVATE);
 
