@@ -13,7 +13,7 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import androidx.annotation.Nullable;
 
-import com.teniqs.matchymatch.R;
+import com.teniqs.matchymatchs.R;
 
 public class AlarmSoundService extends Service {
 

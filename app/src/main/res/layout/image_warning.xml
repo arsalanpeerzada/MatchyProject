@@ -68,7 +68,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Warning"
-                        android:layout_gravity="bottom"
+                        android:layout_gravity="center_horizontal"
                         android:textAlignment="center"
                         android:textColor="@color/red"
                         android:fontFamily="@font/spookyfont"

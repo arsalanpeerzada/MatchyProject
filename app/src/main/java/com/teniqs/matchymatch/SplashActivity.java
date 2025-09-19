@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.teniqs.matchymatchs.R;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override

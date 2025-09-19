@@ -12,10 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Picasso;
 import com.teniqs.matchymatch.Utils.AlarmSoundService;
+import com.teniqs.matchymatchs.R;
 
 import java.io.File;
 import java.lang.reflect.Type;
@@ -207,7 +208,7 @@ public class ParrotActivity extends AppCompatActivity {
                     if (myCustomPuzzle.getBoolean("isComplete", false) && customPuzzles != null && customPuzzles.get(i) != null && !customPuzzles.get(i).getBackgroundImage().equalsIgnoreCase("")) {
 //                        byte[] b = Base64.decode(customPuzzles.get(i).getBackgroundImage(), Base64.DEFAULT);
 //                        bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
-                        Picasso.get()
+                        Glide.with(this)
                                 .load(new File(customPuzzles.get(i).getBackgroundImage()))
                                 .into(imageViews.get(i));
                     } else {

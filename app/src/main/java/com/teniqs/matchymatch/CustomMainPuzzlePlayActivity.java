@@ -16,26 +16,28 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
-import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.DragEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.drawee.view.SimpleDraweeView;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 import com.teniqs.matchymatch.Utils.Common;
 import com.teniqs.matchymatch.Utils.Constants;
 import com.teniqs.matchymatch.Utils.Shaker;
 import com.teniqs.matchymatch.Utils.Utils;
+import com.teniqs.matchymatchs.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,21 +45,19 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.teniqs.matchymatch.Utils.Utils.getUriToResource;
-
-public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
+public class CustomMainPuzzlePlayActivity extends AppCompatActivity {
 
     //    ArrayList<Integer> puzzleAssets, puzzleAssetsChange, puzzleAssetsSave;
 //    ArrayList<String> puzzleSounds;
     int score = 0;
     int changer = 0;
     private static final Integer GREY = Color.parseColor("#D2D2D2");
-    ImageView imageOne, imageTwo, imageThree, imageFour, imageFive, imageSix, imageSeven, imageEight, imageNine, imageTen, DRAGOne, DRAGtwo,  invisible_imageview, invisible_imageview2, invisible_imageview3;
-//    ImageView DRAGThree;
+    ImageView imageOne, imageTwo, imageThree, imageFour, imageFive, imageSix, imageSeven, imageEight, imageNine, imageTen, DRAGOne, DRAGtwo, invisible_imageview, invisible_imageview2, invisible_imageview3;
+    //    ImageView DRAGThree;
     TextToSpeech tts;
     ConstraintLayout container;
     MediaPlayer winlevelsound;
-    SimpleDraweeView ll;
+    ImageView ll;
     Random random;
     private String puzzle_name = "";
     private static final String LEN_PREFIX = "Count_";
@@ -65,49 +65,28 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
     //    private int value1, value2;
     ImageView homebutton;
     ArrayList<CustomMainPuzzle> customMainPuzzles, customMainPuzzlesChange, customMainPuzzlesSave;
-    private static final Type TYPE = new TypeToken<ArrayList<CustomMainPuzzle>>() {}.getType();
+    private static final Type TYPE = new TypeToken<ArrayList<CustomMainPuzzle>>() {
+    }.getType();
     SharedPreferences myPuzzle;
     ImageView gifImageView;
-    Picasso picasso;
     ArrayList<ImageView> imageViewsList;
-    DraweeController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fresco.initialize(this);
 //        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         setContentView(R.layout.custom_puzzle);
 
-        picasso = Picasso.get();
 
         puzzle_name = getIntent().getExtras().getString("puzzleName");
-        myPuzzle = this.getSharedPreferences(puzzle_name+"_MyAwesomePuzzle", Context.MODE_PRIVATE);
+        myPuzzle = this.getSharedPreferences(puzzle_name + "_MyAwesomePuzzle", Context.MODE_PRIVATE);
         customMainPuzzles = loadData();
         ConstraintLayout parent = findViewById(R.id.parent);
         Drawable background = getResources().getDrawable(getIntent().getExtras().getInt("bgColor"));
         parent.setBackground(background);
 
 
-        if(customMainPuzzles != null) {
-//            for (int i = 0; i < customMainPuzzles.size(); i++) {
-//                ImageView imageView = (ImageView) parent.getChildAt(i);
-//                Bitmap bitmap = null;
-//                if (customMainPuzzles != null && customMainPuzzles.get(i) != null && !customMainPuzzles.get(i).getImage().equalsIgnoreCase("")) {
-////                    byte[] b = Base64.decode(customMainPuzzles.get(i).getImage(), Base64.DEFAULT);
-//                    File mSaveBit = new File(customMainPuzzles.get(i).getImage()); // Your image file
-//                    String filePath = mSaveBit.getPath();
-//                    bitmap = BitmapFactory.decodeFile(filePath);
-////                    bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
-//                }
-//
-//                if (bitmap != null) {
-////                    Bitmap bitmap = Utils.getImage(data);
-//                    imageView.setImageBitmap(bitmap);
-//                } else {
-//                    imageView.setImageDrawable(getDrawable(R.drawable.image_placeholder));
-//                }
-//            }
+        if (customMainPuzzles != null) {
             imageViewsList = new ArrayList<>();
             runOnUiThread(new Runnable() {
                 @Override
@@ -116,21 +95,14 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
                         ImageView imageView = (ImageView) parent.getChildAt(i);
                         Bitmap bitmap = null;
                         if (customMainPuzzles != null && customMainPuzzles.get(i) != null && !customMainPuzzles.get(i).getImage().equalsIgnoreCase("")) {
-//                    byte[] b = Base64.decode(customMainPuzzles.get(i).getImage(), Base64.DEFAULT);
-//                    bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
-                            picasso.load(new File(customMainPuzzles.get(i).getImage()))
+
+                            Glide.with(imageView.getContext())
+                                    .load(new File(customMainPuzzles.get(i).getImage()))
                                     .into(imageView);
                         } else {
                             imageView.setImageDrawable(getDrawable(R.drawable.image_placeholder));
                         }
-
                         imageViewsList.add(imageView);
-//                if (bitmap != null) {
-////                    Bitmap bitmap = Utils.getImage(data);
-//                    imageView.setImageBitmap(bitmap);
-//                } else {
-//                    imageView.setImageDrawable(getDrawable(R.drawable.image_placeholder));
-//                }
                     }
                 }
             });
@@ -138,9 +110,9 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
         }
 
         random = new Random();
-        winlevelsound = MediaPlayer.create(CustomMainPuzzlePlayActivity.this,R.raw.kidscheering);
+        winlevelsound = MediaPlayer.create(CustomMainPuzzlePlayActivity.this, R.raw.kidscheering);
         tts = new TextToSpeech(getApplicationContext(), status -> {
-            if(status!=TextToSpeech.ERROR){
+            if (status != TextToSpeech.ERROR) {
 
                 tts.setLanguage(Constants.speechLocale);
                 tts.setPitch((float) 1.1);
@@ -149,12 +121,10 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
         });
         ll = findViewById(R.id.ll);
 
-        controller = Fresco.newDraweeControllerBuilder()
-//                .setUri("android.resource://com.matchymatchproject.mirassociationdanny.matchymatch/drawable/puzzle_end_gif.gif")
-                .setUri(getUriToResource(CustomMainPuzzlePlayActivity.this, R.drawable.puzzle_end_gif))
-//                .setUri("https://media4.giphy.com/avatars/100soft/WahNEDdlGjRZ.gif")
-                .setAutoPlayAnimations(true)
-                .build();
+        Glide.with(this)
+                .asGif()
+                .load(R.drawable.puzzle_end_gif)
+                .into(ll);
 
 
         Handler forWait = new Handler();
@@ -186,45 +156,40 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
         homebutton = findViewById(R.id.homebtn);
 
         homebutton.setOnClickListener(v -> {
-            Intent LH = new Intent(CustomMainPuzzlePlayActivity.this , ParrotActivity.class);
+            Intent LH = new Intent(CustomMainPuzzlePlayActivity.this, ParrotActivity.class);
             LH.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(LH);
         });
 
         score = myPuzzle.getInt("score", 0);
 
-        if(score != 0 && score != 10)
-        {
+        if (score != 0 && score != 10) {
             customMainPuzzlesChange = loadSavedData();
             customMainPuzzlesSave = new ArrayList<>(customMainPuzzlesChange);
 
 
-            for(int i = 0; i < customMainPuzzles.size(); i++){
-                ImageView imageView = (ImageView)parent.getChildAt(i);
+            for (int i = 0; i < customMainPuzzles.size(); i++) {
+                ImageView imageView = (ImageView) parent.getChildAt(i);
                 boolean isMatched = false;
 
-                for(int j = 0; j < customMainPuzzlesChange.size(); j++) {
+                for (int j = 0; j < customMainPuzzlesChange.size(); j++) {
 
-                    if(customMainPuzzles.get(i).getImage().equalsIgnoreCase(customMainPuzzlesChange.get(j).getImage()))
-                    {
+                    if (customMainPuzzles.get(i).getImage().equalsIgnoreCase(customMainPuzzlesChange.get(j).getImage())) {
                         isMatched = true;
                         break;
-                    }
-                    else {
+                    } else {
                         isMatched = false;
                     }
                 }
 
 
-                if(!isMatched)
-                {
+                if (!isMatched) {
                     imageView.setAlpha(0.5f);
                 }
             }
 
 
-        }
-        else {
+        } else {
             customMainPuzzlesChange = loadData();
             customMainPuzzlesSave = loadData();
 
@@ -242,7 +207,7 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
         DRAGOne.setImageBitmap(bitmap);
 //        value1 = puzzleAssetsChange.get(num);
         customMainPuzzlesChange.remove(num);
-        if(customMainPuzzlesChange.size() > 0) {
+        if (customMainPuzzlesChange.size() > 0) {
             num = random.nextInt(customMainPuzzlesChange.size());
 //            b = Base64.decode(customMainPuzzlesChange.get(num).getImage(), Base64.DEFAULT);
             //            bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
@@ -285,19 +250,19 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
         DRAGOne.setOnTouchListener(Common.touchListener);
         DRAGtwo.setOnTouchListener(Common.touchListener);
 //        DRAGThree.setOnTouchListener(Common.touchListener);
-        winlevelsound = MediaPlayer.create(CustomMainPuzzlePlayActivity.this,R.raw.kidscheering);
-
+        winlevelsound = MediaPlayer.create(CustomMainPuzzlePlayActivity.this, R.raw.kidscheering);
 
 
     }
-    public static Bitmap rotateImageIfRequired(String fileName, Bitmap bitmap){
-        Bitmap bMap=bitmap;
+
+    public static Bitmap rotateImageIfRequired(String fileName, Bitmap bitmap) {
+        Bitmap bMap = bitmap;
         try {
             ExifInterface exif = new ExifInterface(fileName);
-            if(exif!=null){
+            if (exif != null) {
                 int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
 
-                switch(orientation) {
+                switch (orientation) {
                     case ExifInterface.ORIENTATION_ROTATE_90:
                         bMap = Utils.rotateBitmap(bitmap, 90);
                         break;
@@ -308,13 +273,13 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
                         bMap = Utils.rotateBitmap(bitmap, 270);
                         break;
                     case ExifInterface.ORIENTATION_NORMAL:
-                        bMap=bitmap;
+                        bMap = bitmap;
                     default:
-                        bMap=bitmap;
+                        bMap = bitmap;
                         break;
                 }
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -327,7 +292,7 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
         Drawable.ConstantState stateB = drawableB.getConstantState();
         // If the constant state is identical, they are using the same drawable resource.
         // However, the opposite is not necessarily true.
-        return (stateA != null && stateB != null && stateA.equals(stateB))
+        return (stateA != null && stateA.equals(stateB))
                 || getBitmap(drawableA).sameAs(getBitmap(drawableB));
     }
 
@@ -354,8 +319,8 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
         return result;
     }
 
-    private void onDragSuccess(){
-        if(customMainPuzzlesChange.size() > 0) {
+    private void onDragSuccess() {
+        if (customMainPuzzlesChange.size() > 0) {
             int index = random.nextInt(customMainPuzzlesChange.size());
 //            byte[] b = Base64.decode(customMainPuzzlesChange.get(index).getImage(), Base64.DEFAULT);
 //            Bitmap bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
@@ -372,7 +337,7 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
             } else {
                 DRAGOne.setImageDrawable(null);
             }
-        }else {
+        } else {
             DRAGOne.setImageDrawable(null);
         }
     }
@@ -419,7 +384,6 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
                                 score += 1;
 
 
-
 //                                new Thread(){
 //                                    public void run()
 //                                    {
@@ -437,15 +401,12 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
                                         final boolean[] isContinue = {true};
                                         final File[] mSaveBit = {null};
 
-                                        for(int i = 0; i < imageViewsList.size(); i++)
-                                        {
-                                            if(v.getId() == imageViewsList.get(i).getId())
-                                            {
+                                        for (int i = 0; i < imageViewsList.size(); i++) {
+                                            if (v.getId() == imageViewsList.get(i).getId()) {
                                                 tts.speak(customMainPuzzles.get(i).getVoice(), TextToSpeech.QUEUE_FLUSH, null);
 
-                                                for(int j = 0; j < customMainPuzzlesSave.size(); j++)
-                                                {
-                                                    if(customMainPuzzles.get(i).getImage().equalsIgnoreCase(customMainPuzzlesSave.get(j).getImage())) {
+                                                for (int j = 0; j < customMainPuzzlesSave.size(); j++) {
+                                                    if (customMainPuzzles.get(i).getImage().equalsIgnoreCase(customMainPuzzlesSave.get(j).getImage())) {
                                                         customMainPuzzlesSave.remove(j);
 //                                                                                    break;
                                                         v.setAlpha(0.5f);
@@ -566,7 +527,6 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
 //                                }.start();
 
 
-
 //                                new Handler().post(new Runnable() {
 //                                    @Override
 //                                    public void run() {
@@ -581,11 +541,23 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
 //                                        bitmap = rotateImageIfRequired(filePath, bitmap);
 //                                        invisible_imageview.setImageBitmap(bitmap);
 
-                                        picasso.load(mSaveBit)
-                                                .into(invisible_imageview, new Callback() {
+                                        Glide.with(invisible_imageview.getContext())
+                                                .load(mSaveBit)
+                                                .listener(new RequestListener<Drawable>() {
                                                     @Override
-                                                    public void onSuccess() {
-                                                        if (DRAGtwo.getDrawable() != null && ((BitmapDrawable) invisible_imageview.getDrawable()).getBitmap() != ((BitmapDrawable) (DRAGtwo.getDrawable())).getBitmap()) {
+                                                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                                        // Equivalent to Picasso's onError
+                                                        if (e != null) e.printStackTrace();
+                                                        return false; // return false to let Glide handle setting the error placeholder (if any)
+                                                    }
+
+                                                    @Override
+                                                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                                        // Equivalent to Picasso's onSuccess
+                                                        if (DRAGtwo.getDrawable() != null &&
+                                                                ((BitmapDrawable) invisible_imageview.getDrawable()).getBitmap() !=
+                                                                        ((BitmapDrawable) DRAGtwo.getDrawable()).getBitmap()) {
+
                                                             Bitmap bitmap = BitmapFactory.decodeFile(filePath);
                                                             bitmap = rotateImageIfRequired(filePath, bitmap);
                                                             DRAGOne.setImageBitmap(bitmap);
@@ -595,13 +567,11 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
                                                             DRAGOne.setImageDrawable(null);
                                                             DRAGOne.setOnTouchListener(null);
                                                         }
+                                                        return false; // return false so Glide still sets the image on the ImageView
                                                     }
+                                                })
+                                                .into(invisible_imageview);
 
-                                                    @Override
-                                                    public void onError(Exception e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                });
 
 //                                                if (DRAGtwo.getDrawable() != null && !(areDrawablesIdentical(invisible_imageview.getDrawable(), DRAGtwo.getDrawable())) && DRAGThree.getDrawable() != null && !(areDrawablesIdentical(invisible_imageview.getDrawable(), DRAGThree.getDrawable()))) {
 
@@ -621,26 +591,38 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
 //                                        bitmap = rotateImageIfRequired(filePath, bitmap);
 //                                        invisible_imageview.setImageBitmap(bitmap);
 
-                                        picasso.load(mSaveBit)
-                                                .into(invisible_imageview, new Callback() {
+                                        Glide.with(invisible_imageview.getContext())
+                                                .load(mSaveBit)
+                                                .listener(new RequestListener<Drawable>() {
                                                     @Override
-                                                    public void onSuccess() {
-                                                        if (DRAGOne.getDrawable() != null && ((BitmapDrawable) invisible_imageview.getDrawable()).getBitmap() != ((BitmapDrawable) (DRAGOne.getDrawable())).getBitmap() ) {
+                                                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                                        // Picasso's onError equivalent
+                                                        if (e != null) e.printStackTrace();
+                                                        return false; // keep Glide’s normal error handling
+                                                    }
+
+                                                    @Override
+                                                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target,
+                                                                                   DataSource dataSource, boolean isFirstResource) {
+                                                        // Picasso's onSuccess equivalent
+                                                        if (DRAGOne.getDrawable() != null &&
+                                                                ((BitmapDrawable) invisible_imageview.getDrawable()).getBitmap() !=
+                                                                        ((BitmapDrawable) DRAGOne.getDrawable()).getBitmap()) {
+
                                                             Bitmap bitmap = BitmapFactory.decodeFile(filePath);
                                                             bitmap = rotateImageIfRequired(filePath, bitmap);
                                                             DRAGtwo.setImageBitmap(bitmap);
                                                             customMainPuzzlesChange.remove(index);
+
                                                         } else {
                                                             DRAGtwo.setImageDrawable(null);
                                                             DRAGtwo.setOnTouchListener(null);
                                                         }
+                                                        return false; // allow Glide to continue setting the ImageView
                                                     }
+                                                })
+                                                .into(invisible_imageview);
 
-                                                    @Override
-                                                    public void onError(Exception e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                });
 
 //                                                if (DRAGOne.getDrawable() != null && !(areDrawablesIdentical(invisible_imageview.getDrawable(), DRAGOne.getDrawable())) && DRAGThree.getDrawable() != null && !(areDrawablesIdentical(invisible_imageview.getDrawable(), DRAGThree.getDrawable()))) {
 
@@ -703,7 +685,6 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
 //                                    public void run() {
                                 if (score == 10) {
                                     container.setAlpha(0.5f);
-                                    ll.setController(controller);
                                     ll.setVisibility(View.VISIBLE);
                                     //                                    bgimage.setAlpha(0.5f);
                                     winlevelsound.start();
@@ -760,23 +741,23 @@ public class CustomMainPuzzlePlayActivity extends AppCompatActivity{
     };
 
     public ArrayList<CustomMainPuzzle> loadData() {
-        ArrayList<CustomMainPuzzle> customMainPuzzlesList= new Gson().fromJson(myPuzzle.getString("customPuzzles", null), TYPE);
+        ArrayList<CustomMainPuzzle> customMainPuzzlesList = new Gson().fromJson(myPuzzle.getString("customPuzzles", null), TYPE);
 
         return customMainPuzzlesList;
     }
+
     public ArrayList<CustomMainPuzzle> loadSavedData() {
         ArrayList<CustomMainPuzzle> customMainPuzzlesList = new Gson().fromJson(myPuzzle.getString("customPuzzlesValues", null), TYPE);
 
         return customMainPuzzlesList;
     }
 
-    public void saveData (ArrayList<CustomMainPuzzle> list, int scoree) {
+    public void saveData(ArrayList<CustomMainPuzzle> list, int scoree) {
         SharedPreferences.Editor editor = myPuzzle.edit();
 
-        if(list!= null) {
+        if (list != null) {
             editor.putString("customPuzzlesValues", new Gson().toJson(list));
-        }
-        else {
+        } else {
             editor.putString("customPuzzlesValues", null);
         }
         editor.putBoolean("isComplete", true);

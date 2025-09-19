@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.teniqs.matchymatch.ZebraActivity">
+    android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
@@ -20,7 +19,7 @@
     <!--&gt;-->
 
     <!--<pl.droidsonroids.gif.GifImageView-->
-    <com.facebook.drawee.view.SimpleDraweeView
+    <ImageView
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

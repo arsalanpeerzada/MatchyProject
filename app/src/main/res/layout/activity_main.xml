@@ -75,7 +75,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.4"
+                            android:layout_weight="0.6"
                             android:orientation="horizontal"
                             android:weightSum="1">
 
@@ -102,7 +102,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.6"></LinearLayout>
+                            android:layout_weight="0.3"></LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
@@ -338,25 +338,15 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="0.4"
+                            android:layout_weight="0.8"
                             android:orientation="horizontal"
                             android:weightSum="3">
 
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1.5"
-                                ></LinearLayout>
 
                             <LinearLayout
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight="0.3"
-                                ></LinearLayout>
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1.2"
+                                android:layout_weight="3"
                                 >
                                 <ImageView
                                     android:id="@+id/parentzoneIMG"
@@ -372,7 +362,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight="1.6"
+                            android:layout_weight="1.2"
                             android:orientation="horizontal"
                             android:weightSum="2">
 

@@ -25,14 +25,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.Picasso;
 import com.teniqs.matchymatch.Utils.AlarmSoundService;
 import com.teniqs.matchymatch.Utils.Common;
 import com.teniqs.matchymatch.Utils.Constants;
 import com.teniqs.matchymatch.Utils.Utils;
+import com.teniqs.matchymatchs.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -232,8 +232,10 @@ public class CustomMainActivity extends AppCompatActivity  {
                     byte[] b = Base64.decode(customPuzzles.get(i).getBackgroundImage(), Base64.DEFAULT);
                     bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
                     imageViews.get(i).setImageBitmap(bitmap);
-                    Picasso.get().load(new File(customPuzzles.get(i).getBackgroundImage())).memoryPolicy(MemoryPolicy.NO_CACHE).into(imageViews.get(i));
-
+                    Glide.with(this)
+                            .load(new File(customPuzzles.get(i).getBackgroundImage()))
+                            .skipMemoryCache(true) // equivalent to MemoryPolicy.NO_CACHE
+                            .into(imageViews.get(i));
                 }
             } else {
                 imageViews.get(i).setImageDrawable(getDrawable(R.drawable.image_placeholder));
@@ -740,7 +742,7 @@ public class CustomMainActivity extends AppCompatActivity  {
                     //bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), pickedimage);
 //                imagePath = Utils.getPath( CustomMainActivity.this.getApplicationContext( ), pickedimage);
                     file = new File(imagePath);
-                    Picasso.get()
+                    Glide.with(this)
                             .load(file)
                             .into(invisible_imageView);
                     //                invisible_imageView.setImageURI(pickedimage);
@@ -752,7 +754,7 @@ public class CustomMainActivity extends AppCompatActivity  {
                 file = new File(imagePath);
                 file.getParentFile().mkdirs();
 
-                Picasso.get()
+                Glide.with(this)
                         .load(file)
                         .into(invisible_imageView);
 

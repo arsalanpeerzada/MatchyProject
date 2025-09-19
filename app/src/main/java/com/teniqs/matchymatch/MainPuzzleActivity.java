@@ -1,7 +1,5 @@
 package com.teniqs.matchymatch;
 
-import static com.teniqs.matchymatch.Utils.Utils.getUriToResource;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,12 +25,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.bumptech.glide.Glide;
 import com.teniqs.matchymatch.Utils.Common;
 import com.teniqs.matchymatch.Utils.Constants;
 import com.teniqs.matchymatch.Utils.Shaker;
+import com.teniqs.matchymatchs.R;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -52,21 +49,19 @@ public class MainPuzzleActivity extends AppCompatActivity {
     TextToSpeech tts;
     ConstraintLayout container;
     MediaPlayer winlevelsound;
-    SimpleDraweeView ll;
+    ImageView ll;
     Random random;
     private String puzzle_name = "";
     private static final String LEN_PREFIX = "Count_";
     private static final String VAL_PREFIX = "IntValue_";
     //    private int value1, value2;
     ImageView homebutton;
-    DraweeController controller;
     private boolean canShowFullscreenAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fresco.initialize(this);
-//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+
         setContentView(R.layout.main_puzzle);
         puzzleAssets = getIntent().getExtras().getIntegerArrayList("puzzle_assets");
         puzzleAssetsChange = getIntent().getExtras().getIntegerArrayList("puzzle_assets");
@@ -101,12 +96,10 @@ public class MainPuzzleActivity extends AppCompatActivity {
         });
         ll = findViewById(R.id.ll);
 
-        controller = Fresco.newDraweeControllerBuilder()
-//                .setUri("android.resource://com.matchymatchproject.mirassociationdanny.matchymatch/drawable/puzzle_end_gif.gif")
-                .setUri(getUriToResource(MainPuzzleActivity.this, R.drawable.puzzle_end_gif))
-//                .setUri("https://media4.giphy.com/avatars/100soft/WahNEDdlGjRZ.gif")
-                .setAutoPlayAnimations(true)
-                .build();
+        Glide.with(this)
+                .asGif()
+                .load(R.drawable.puzzle_end_gif)
+                .into(ll);
 
 
         Handler forWait = new Handler();
@@ -426,11 +419,8 @@ public class MainPuzzleActivity extends AppCompatActivity {
                         if (score == 10) {
 
                             container.setAlpha(0.5f);
-//                                    bgimage.setAlpha(0.5f);
                             winlevelsound.start();
 
-//                                    ImageView ll = findViewById(R.id.ll);
-                            ll.setController(controller);
                             ll.setVisibility(View.VISIBLE);
                             getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
@@ -439,7 +429,6 @@ public class MainPuzzleActivity extends AppCompatActivity {
                             DuckBackNavigate.postDelayed(() -> {
 
                                 Intent IDB = new Intent(MainPuzzleActivity.this, MainActivity.class);
-//                                          IDB.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 IDB.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(IDB);
                             }, 3500);
@@ -479,20 +468,6 @@ public class MainPuzzleActivity extends AppCompatActivity {
 
     private void guideClass() {
 
-
-//        new MaterialIntroView.Builder(this)
-//                .enableDotAnimation(true)
-//                .enableIcon(false)
-//                .setFocusGravity(FocusGravity.CENTER)
-//                .setFocusType(Focus.MINIMUM)
-//                .setDelayMillis(200)
-//                .enableFadeAnimation(true)
-//                .performClick(false)
-//                .setInfoText("Match below Boxes to Upper boxes to complete the puzzle")
-//                .setShape(ShapeType.CIRCLE)
-//                .setTarget(tv1)
-//                .setUsageId("Tv1") //THIS SHOULD BE UNIQUE ID
-//                .show();
     }
 
     private void loadAdView() {

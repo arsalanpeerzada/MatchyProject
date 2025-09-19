@@ -6,6 +6,8 @@ import android.webkit.WebView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.teniqs.matchymatchs.R;
+
 public class WebViewActivity extends AppCompatActivity {
 
     WebView webView;

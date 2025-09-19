@@ -1,5 +1,7 @@
 package com.teniqs.matchymatch;
 
+import static com.teniqs.matchymatch.Utils.Utils.getUriToResource;
+
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -21,10 +23,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.speech.tts.TextToSpeech;
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.FileProvider;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
@@ -32,24 +30,25 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.drawee.view.SimpleDraweeView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.FileProvider;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.Picasso;
 import com.teniqs.matchymatch.Utils.AlarmSoundService;
 import com.teniqs.matchymatch.Utils.Common;
 import com.teniqs.matchymatch.Utils.Constants;
 import com.teniqs.matchymatch.Utils.Utils;
+import com.teniqs.matchymatchs.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-
-import static com.teniqs.matchymatch.Utils.Utils.getUriToResource;
 
 public class CustomMainPuzzleActivity extends AppCompatActivity {
 
@@ -105,7 +104,7 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
     }.getType();
     SharedPreferences myPuzzle;
     ConstraintLayout container;
-    SimpleDraweeView ll;
+    ImageView ll;
     Uri imageUri;
     double IMAGE_ID = 0;
 
@@ -113,13 +112,9 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-//        setContentView(R.layout.activity_green);
-        Fresco.initialize(this);
         setContentView(R.layout.custom_puzzle);
 
         container = findViewById(R.id.parent);
-//        bgimage = findViewById(R.id.bgimage);
-//        bgimage.setImageResource(getIntent().getIntExtra("bgColor",0));
         Drawable background = getResources().getDrawable(getIntent().getExtras().getInt("bgColor"));
         container.setBackground(background);
         puzzleName = getIntent().getStringExtra("puzzleName");
@@ -128,13 +123,10 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
 
         ll = findViewById(R.id.ll);
 
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
-//                .setUri("android.resource://com.matchymatchproject.mirassociationdanny.matchymatch/drawable/puzzle_end_gif.gif")
-                .setUri(getUriToResource(CustomMainPuzzleActivity.this, R.drawable.puzzle_end_gif))
-//                .setUri("https://media4.giphy.com/avatars/100soft/WahNEDdlGjRZ.gif")
-                .setAutoPlayAnimations(true)
-                .build();
-        ll.setController(controller);
+        Glide.with(this)
+                .asGif()
+                .load(R.drawable.puzzle_end_gif)
+                .into(ll);
 
         myPuzzle = this.getSharedPreferences(puzzleName + "_MyAwesomePuzzle", Context.MODE_PRIVATE);
         puzzle = myPuzzle.getInt("puzzle", 0);
@@ -526,9 +518,10 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
                     bitmap = BitmapFactory.decodeByteArray(b, 0, b.length);
                     imageViews.get(i).setImageBitmap(bitmap);
 
-                    Picasso.get()
+                    Glide.with(this)
                             .load(new File(customMainPuzzles.get(i).getImage()))
-                            .memoryPolicy(MemoryPolicy.NO_CACHE)
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
                             .into(imageViews.get(i));
 
                 } else {
@@ -1306,7 +1299,7 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
                     }
 //                    imagePath = Utils.getPath( CustomMainPuzzleActivity.this.getApplicationContext( ), pickedimage);
                     file = new File(imagePath);
-                    Picasso.get()
+                    Glide.with(this)
                             .load(file)
                             .into(invisible_imageView);
                 }
@@ -1330,7 +1323,7 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
                     file = new File(imagePath);
                     file.getParentFile().mkdirs();
 
-                    Picasso.get()
+                    Glide.with(this)
                             .load(file)
                             .into(invisible_imageView);
                 }
@@ -1357,7 +1350,7 @@ public class CustomMainPuzzleActivity extends AppCompatActivity {
 
                 file = new File(imagePath);
                 file.getParentFile().mkdirs();
-                Picasso.get()
+                Glide.with(this)
                         .load(file)
                         .into(invisible_imageView);
             }
